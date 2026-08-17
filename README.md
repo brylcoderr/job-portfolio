@@ -1,131 +1,61 @@
-# Shubham Kushwah — Developer Portfolio
+# Hi, I'm Shubham Kushwah 👋
 
-A modern, single-page developer portfolio built with **Next.js 16**, **Tailwind CSS v4**, **Three.js**, and **Framer Motion**. Features a "coding vibes" aesthetic with terminal UI touches, interactive 3D elements, smooth scroll animations, and a persistent light/dark theme toggle.
+**Full-Stack Developer | 6+ Years Experience | Noida, India**
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss)
-![Three.js](https://img.shields.io/badge/Three.js-r185-black?logo=three.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
-![License](https://img.shields.io/badge/License-MIT-green)
+I'm a Full-Stack Developer with 6+ years of experience building fast, scalable web applications using React.js, Next.js, TypeScript, Node.js, and Express. I specialize in UI/UX engineering, accessibility, REST API design, and database development with MongoDB and MySQL. My work spans from government-scale platforms serving millions to SaaS products used by tens of thousands.
+
+I actively integrate AI tools — GitHub Copilot, ChatGPT API, Figma AI, and Vercel AI SDK — into my workflow, staying ahead of the curve in modern development practices.
 
 ---
 
-## ✨ Features
+## 🚀 Skills & Technologies
 
-- **Interactive 3D Hero** — Wireframe icosahedron + particle network that reacts to mouse movement (react-three-fiber)
-- **Terminal Typing Animation** — Fake terminal window with syntax-highlighted code that types out on load
-- **Light & Dark Themes** — Toggle with persistence via `localStorage`, smooth CSS transitions, dark theme styled like a code editor
-- **Scroll Reveal Animations** — Sections fade/slide into view using Framer Motion's `useInView`
-- **3D Tilt Project Cards** — Spring-physics hover effect with perspective transforms
-- **Animated Skill Pills** — Staggered entrance animations grouped by category
-- **Timeline Experience Section** — Alternating left/right layout with pulsing dots
-- **GitHub Contribution Heatmap** — Decorative contribution-style strip in the footer
-- **Custom Cursor** — Dot + ring follower on desktop (auto-disabled on touch devices)
-- **Mobile Responsive** — Hamburger nav with animated drawer, stacked layouts
-- **SEO Ready** — Meta tags, Open Graph, semantic HTML, proper heading hierarchy
+**Frontend:** React.js, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS  
+**Backend:** Node.js, Express.js, NestJS, REST APIs, GraphQL, Postman  
+**Databases:** MongoDB, PostgreSQL, MySQL, Redis, Prisma, Firebase  
+**DevOps & Tools:** Git, GitHub, Docker, AWS, Vercel, CI/CD  
+**Testing:** Jest, Vitest, React Testing Library, Cypress, Playwright, Selenium  
+**AI & Productivity:** GitHub Copilot, ChatGPT API, LangChain, Hugging Face, Figma AI, Vercel AI SDK  
 
-## 🛠 Tech Stack
+---
 
-| Layer        | Technology                                  |
-| ------------ | ------------------------------------------- |
-| Framework    | Next.js 16 (App Router, Static Export)      |
-| Language     | TypeScript 5                                |
-| Styling      | Tailwind CSS v4 (`@theme inline`)           |
-| 3D Graphics  | Three.js + @react-three/fiber + @react-three/drei |
-| Animations   | Framer Motion 13                            |
-| Icons        | Lucide React + inline SVGs                  |
-| Fonts        | Inter (body) + JetBrains Mono (code accent) |
-| Deployment   | Vercel                                      |
+## 💼 Experience
 
-## 📁 Project Structure
+### Nippon Data Systems
+**Front End Developer** *(Dec 2023 — May 2026)*
+- Built responsive government portals handling 1M+ daily active users with React.js and Next.js
+- Implemented WCAG 2.1 AA accessibility standards across all platforms, achieving 98% Lighthouse scores
+- Reduced page load times by 40% through code splitting, lazy loading, and image optimization
 
-```
-├── app/
-│   ├── globals.css        # Design system, theme vars, animations
-│   ├── layout.tsx         # Root layout, fonts, SEO meta tags
-│   ├── page.tsx           # Single-page composition
-│   └── favicon.ico
-├── components/
-│   ├── Navbar.tsx         # Fixed glass-morphism nav + mobile drawer
-│   ├── ThemeProvider.tsx   # Light/dark context with localStorage
-│   ├── ThemeToggle.tsx     # Animated Sun/Moon toggle
-│   ├── HeroScene.tsx      # Three.js 3D canvas (lazy-loaded)
-│   ├── CustomCursor.tsx    # Desktop-only dot + ring cursor
-│   ├── SectionReveal.tsx   # Reusable scroll-reveal wrapper
-│   ├── Footer.tsx          # Contribution strip + social links
-│   └── sections/
-│       ├── Hero.tsx        # Name, tagline, terminal, CTAs
-│       ├── About.tsx       # Bio + highlight cards
-│       ├── Skills.tsx      # Animated skill pills by category
-│       ├── Experience.tsx  # Timeline with 3 positions
-│       ├── Projects.tsx    # 4 project cards with 3D tilt
-│       ├── Testimonials.tsx# Placeholder logo strip
-│       └── Contact.tsx     # Form + contact info + resume DL
-└── public/
-    └── resume.pdf          # Replace with your actual resume
-```
+### Ensaar Global Private Limited
+**Full Stack Developer** *(Mar 2021 — Apr 2023)*
+- Architected a full-stack SaaS platform serving 50K+ users with React, Node.js, and MongoDB
+- Designed and maintained 20+ RESTful API endpoints with Express.js and comprehensive test coverage
+- Led migration from legacy jQuery codebase to React, reducing bundle size by 60%
 
-## 🚀 Getting Started
+### Round Pay
+**Web Developer** *(Aug 2019 — May 2020)*
+- Developed a payment dashboard with real-time transaction tracking and analytics
+- Integrated third-party payment gateways and KYC verification workflows
+- Built responsive mobile-first UI used by 10K+ merchants across India
 
-```bash
-# Install dependencies
-npm install
+---
 
-# Start development server
-npm run dev
+## 🛠 Featured Projects
 
-# Production build
-npm run build
+- **[XenoDesk](#)** — Full-featured help desk and customer support platform with real-time ticket management, agent assignment, and live chat integration. *(React, TypeScript, Node.js, MongoDB, Socket.io)*
+- **[SaaS Landing Page](#)** — High-converting SaaS product landing page with modern design patterns, smooth scroll animations, and responsive layouts. *(Next.js, Framer Motion, Tailwind CSS, TypeScript)*
+- **[Katachi](#)** — Creative web experience with dynamic shapes, fluid animations, and interactive visual storytelling inspired by Japanese design principles. *(React, Canvas API, GSAP, WebGL)*
+- **[Xeno Demos](#)** — Interactive product demonstration platform showcasing key features through guided walkthroughs and live preview experiences. *(React, TypeScript, Framer Motion, REST API)*
 
-# Start production server
-npm start
-```
+*(For a full list of my projects, check out my portfolio website or GitHub repositories!)*
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+---
 
-## 🎨 Customization
+## 📫 Let's Connect!
 
-### Personal Info
+- **Email:** [brylcodes@gmail.com](mailto:brylcodes@gmail.com)
+- **Phone:** +91-9557660208
+- **LinkedIn:** [linkedin.com/in/brylcodes](https://linkedin.com/in/brylcodes)
 
-Edit these files to swap in your own details:
-
-- **Name, tagline, bio** → `components/sections/Hero.tsx` and `components/sections/About.tsx`
-- **Skills** → `components/sections/Skills.tsx` — update the `SKILL_CATEGORIES` array
-- **Experience** → `components/sections/Experience.tsx` — update the `EXPERIENCES` array
-- **Projects** → `components/sections/Projects.tsx` — update the `PROJECTS` array with real titles, descriptions, tech stacks, and links
-- **Contact info** → `components/sections/Contact.tsx` — update the `CONTACT_LINKS` array
-- **Social links** → `components/Footer.tsx` — update the `SOCIAL_LINKS` array
-- **Resume** → Replace `public/resume.pdf` with your actual file
-- **SEO meta** → `app/layout.tsx` — update `metadata` export
-
-### Theme Colors
-
-All colors are defined as CSS custom properties in `app/globals.css`:
-
-- Light theme → `:root { ... }`
-- Dark theme → `[data-theme="dark"] { ... }`
-
-Key variables: `--accent`, `--bg`, `--fg`, `--surface`, `--border-color`
-
-### Contact Form
-
-The form currently shows a success state but doesn't send emails. To wire it up:
-
-1. **EmailJS** — Add your service/template IDs in `Contact.tsx`
-2. **Formspree** — Replace the form `onSubmit` with a `fetch` to your Formspree endpoint
-3. **Custom API** — Create an API route at `app/api/contact/route.ts`
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-```bash
-npx vercel
-```
-
-Or connect your GitHub repo at [vercel.com/new](https://vercel.com/new) for automatic deployments.
-
-## 📄 License
-
-MIT — feel free to use this as a starting point for your own portfolio.
+Feel free to reach out if you have a project in mind or just want to say hi!
