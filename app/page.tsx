@@ -1,12 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
+import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 
@@ -25,9 +27,20 @@ export default function Home() {
         <Skills />
         <Experience />
         <Projects />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: "var(--color-surface-val)",
+            color: "var(--color-text)",
+            border: "1px solid var(--color-border-val)",
+          },
+        }}
+      />
     </>
   );
 }

@@ -2,30 +2,10 @@
 
 import { motion } from "framer-motion";
 import SectionReveal from "../SectionReveal";
-import { Code2, Shield, Building2, Sparkles } from "lucide-react";
+import { aboutConfig, siteConfig } from "@/config/portfolio";
+import { MapPin, Briefcase, FolderOpen, Globe } from "lucide-react";
 
-const HIGHLIGHTS = [
-  {
-    icon: Code2,
-    title: "6+ Years",
-    subtitle: "Building production-grade web applications",
-  },
-  {
-    icon: Shield,
-    title: "Accessibility",
-    subtitle: "WCAG 2.1 AA compliant interfaces",
-  },
-  {
-    icon: Building2,
-    title: "Gov-Scale",
-    subtitle: "Platforms handling millions of users",
-  },
-  {
-    icon: Sparkles,
-    title: "AI-Augmented",
-    subtitle: "Copilot, ChatGPT API, Vercel AI SDK",
-  },
-];
+const STAT_ICONS = [Briefcase, FolderOpen, Globe];
 
 export default function About() {
   return (
@@ -33,62 +13,92 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionReveal>
           <p className="section-heading">About Me</p>
-          <h2 className="section-title mb-8">
+          <h2 className="section-title mb-12">
             Crafting digital experiences<br />
             that <span className="gradient-text">make an impact</span>
           </h2>
         </SectionReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Bio */}
+          {/* Left: Avatar / Visual */}
           <SectionReveal delay={0.1}>
-            <div className="space-y-5">
-              <p className="text-[var(--muted-fg)] leading-relaxed text-base lg:text-lg">
-                I&apos;m a Full-Stack Developer with <strong className="text-[var(--fg)]">6+ years of experience</strong> building
-                fast, scalable web applications using <strong className="text-[var(--fg)]">React.js, Next.js,
-                  TypeScript, Node.js, and Express</strong>.
-              </p>
-              <p className="text-[var(--muted-fg)] leading-relaxed text-base lg:text-lg">
-                I specialize in UI/UX engineering, accessibility, REST API design,
-                and database development with MongoDB and MySQL. My work spans
-                from government-scale platforms serving millions to SaaS products
-                used by tens of thousands.
-              </p>
-              <p className="text-[var(--muted-fg)] leading-relaxed text-base lg:text-lg">
-                I actively integrate AI tools — GitHub Copilot, ChatGPT API,
-                Figma AI, and Vercel AI SDK — into my workflow, staying ahead of
-                the curve in modern development practices.
-              </p>
-
-              {/* Location tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-muted)] rounded-full text-sm font-mono text-[var(--accent)]">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                Noida, India · Open to remote
+            <div className="flex justify-center lg:justify-start">
+              <div className="relative">
+                {/* Glow ring */}
+                <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[var(--color-accent-val)] to-[var(--color-accent-secondary-val)] opacity-20 blur-xl" />
+                {/* Avatar container */}
+                <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-[var(--color-accent-val)]/30 bg-[var(--color-surface-val)]">
+                  {/* Geometric abstract visual */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative">
+                      {/* Decorative rings */}
+                      <motion.div
+                        className="absolute -inset-16 rounded-full border border-[var(--color-accent-val)]/20"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      />
+                      <motion.div
+                        className="absolute -inset-10 rounded-full border border-[var(--color-accent-secondary-val)]/15"
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                      />
+                      {/* Center monogram */}
+                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[var(--color-accent-val)] to-[var(--color-accent-secondary-val)] flex items-center justify-center">
+                        <span className="text-3xl font-bold text-white font-heading">
+                          {siteConfig.name.split(" ").map((n) => n[0]).join("")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </SectionReveal>
 
-          {/* Highlights grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {HIGHLIGHTS.map((item, index) => (
-              <SectionReveal key={item.title} delay={0.15 + index * 0.1}>
-                <motion.div
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors group"
-                  style={{ boxShadow: "var(--card-shadow)" }}
+          {/* Right: Text */}
+          <SectionReveal delay={0.2}>
+            <div className="space-y-5">
+              {aboutConfig.paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-[var(--color-text-muted-val)] leading-relaxed text-base lg:text-lg"
                 >
-                  <item.icon className="w-8 h-8 text-[var(--accent)] mb-3 group-hover:scale-110 transition-transform" />
-                  <h3 className="font-bold text-[var(--fg)] text-lg mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-[var(--muted-fg)] leading-snug">
-                    {item.subtitle}
+                  {paragraph}
+                </p>
+              ))}
+
+              {/* Location tag */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-muted)] rounded-full text-sm font-mono text-[var(--color-accent-val)]">
+                <MapPin className="w-3.5 h-3.5" />
+                {siteConfig.location} · Open to remote
+              </div>
+            </div>
+          </SectionReveal>
+        </div>
+
+        {/* Stat cards */}
+        <SectionReveal delay={0.3}>
+          <div className="grid grid-cols-3 gap-4 mt-16 max-w-2xl mx-auto lg:max-w-none">
+            {aboutConfig.stats.map((stat, index) => {
+              const Icon = STAT_ICONS[index];
+              return (
+                <motion.div
+                  key={stat.label}
+                  className="stat-card"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                >
+                  <Icon className="w-5 h-5 text-[var(--color-accent-val)] mx-auto mb-2" />
+                  <p className="text-2xl font-bold text-[var(--color-text)] font-heading">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-[var(--color-text-muted-val)] font-mono mt-1">
+                    {stat.label}
                   </p>
                 </motion.div>
-              </SectionReveal>
-            ))}
+              );
+            })}
           </div>
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import SectionReveal from "./SectionReveal";
-import type { Project } from "@/lib/projects-data";
+import type { Project } from "@/config/portfolio";
 
 export default function ProjectCard({
   project,
@@ -97,14 +97,19 @@ export default function ProjectCard({
 
         {/* ── Card body ─────────────────────────────────── */}
         <div className="p-5 sm:p-6">
-          <h3 className="text-lg font-bold text-[var(--fg)] mb-2 font-mono flex items-center gap-2">
+          {/* Category tag */}
+          <span className="category-tag mb-3 inline-block">
+            {project.category}
+          </span>
+
+          <h3 className="text-lg font-bold text-[var(--color-text)] mb-2 font-heading flex items-center gap-2">
             <span
               className="w-2 h-2 rounded-full inline-block shrink-0"
               style={{ background: project.accentColor }}
             />
             {project.title}
           </h3>
-          <p className="text-sm text-[var(--muted-fg)] mb-4 leading-relaxed line-clamp-3">
+          <p className="text-sm text-[var(--color-text-muted-val)] mb-4 leading-relaxed line-clamp-3">
             {project.description}
           </p>
 
@@ -113,7 +118,7 @@ export default function ProjectCard({
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-[var(--muted)] text-[var(--muted-fg)] border border-[var(--border-color)]"
+                className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-[var(--accent-muted)] text-[var(--color-text-muted-val)] border border-[var(--color-border-val)]"
               >
                 {t}
               </span>

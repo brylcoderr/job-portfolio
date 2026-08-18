@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Syne, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { siteConfig } from "@/config/portfolio";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
   display: "swap",
 });
@@ -16,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shubham Kushwah — Full-Stack Developer | React, Next.js, Node.js",
-  description:
-    "Full-Stack Developer with 6+ years of experience building fast, scalable web applications using React.js, Next.js, TypeScript, Node.js, and Express. Based in Noida, India — open to remote.",
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: `${siteConfig.name} — ${siteConfig.title} | React, Next.js, Node.js`,
+  description: siteConfig.description,
   keywords: [
     "Shubham Kushwah",
     "Full-Stack Developer",
@@ -27,24 +34,33 @@ export const metadata: Metadata = {
     "Node.js",
     "TypeScript",
     "Web Developer",
-    "Noida",
     "India",
   ],
-  authors: [{ name: "Shubham Kushwah" }],
+  authors: [{ name: siteConfig.name }],
+  alternates: {
+    canonical: siteConfig.siteUrl,
+  },
   openGraph: {
     type: "website",
-    title: "Shubham Kushwah — Full-Stack Developer",
-    description:
-      "Building fast, scalable, accessible web apps for 6+ years. React.js, Next.js, Node.js specialist.",
-    url: "https://brylcodes.in",
-    siteName: "Shubham Kushwah Portfolio",
+    title: `${siteConfig.name} — ${siteConfig.title}`,
+    description: siteConfig.description,
+    url: siteConfig.siteUrl,
+    siteName: `${siteConfig.name} Portfolio`,
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — ${siteConfig.title}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shubham Kushwah — Full-Stack Developer",
-    description:
-      "Building fast, scalable, accessible web apps for 6+ years. React.js, Next.js, Node.js specialist.",
+    title: `${siteConfig.name} — ${siteConfig.title}`,
+    description: siteConfig.description,
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -58,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${dmSans.variable} ${syne.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <head>
         {/* Inline theme script to prevent flash */}

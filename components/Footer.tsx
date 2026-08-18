@@ -2,7 +2,8 @@
 
 import { useMemo } from "react";
 import SectionReveal from "./SectionReveal";
-import { Globe, Mail, Heart } from "lucide-react";
+import { Heart, Mail } from "lucide-react";
+import { siteConfig } from "@/config/portfolio";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -21,11 +22,9 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 function ContributionStrip() {
-  // Generate a random-ish but deterministic contribution pattern
   const cells = useMemo(() => {
     const result: number[] = [];
     for (let i = 0; i < 52 * 7; i++) {
-      // Create a semi-random pattern using a simple hash
       const hash = ((i * 2654435761) >>> 0) % 100;
       if (hash < 30) result.push(0);
       else if (hash < 55) result.push(1);
@@ -46,8 +45,9 @@ function ContributionStrip() {
               return (
                 <div
                   key={dayIdx}
-                  className={`contribution-cell ${level > 0 ? `level-${level}` : ""
-                    }`}
+                  className={`contribution-cell ${
+                    level > 0 ? `level-${level}` : ""
+                  }`}
                 />
               );
             })}
@@ -59,26 +59,25 @@ function ContributionStrip() {
 }
 
 const SOCIAL_LINKS = [
-  { icon: GithubIcon, href: "https://github.com/brylcoderr", label: "GitHub" },
-  {
-    icon: LinkedinIcon,
-    href: "https://linkedin.com/in/brylcodes",
-    label: "LinkedIn",
-  },
-  // { icon: Globe, href: "https://brylcodes.in", label: "Website" },
-  { icon: Mail, href: "mailto:brylcodes@gmail.com", label: "Email" },
+  ...(siteConfig.socials.github
+    ? [{ icon: GithubIcon, href: siteConfig.socials.github, label: "GitHub" }]
+    : []),
+  ...(siteConfig.socials.linkedin
+    ? [{ icon: LinkedinIcon, href: siteConfig.socials.linkedin, label: "LinkedIn" }]
+    : []),
+  { icon: Mail, href: `mailto:${siteConfig.contactEmail}`, label: "Email" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border-color)] bg-[var(--surface)]">
+    <footer className="border-t border-[var(--color-border-val)] bg-[var(--color-surface-val)]">
       {/* Currently building strip */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <SectionReveal>
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="font-mono text-xs text-[var(--muted-fg)]">
+              <span className="w-2 h-2 rounded-full bg-[var(--color-available-val)] animate-pulse" />
+              <span className="font-mono text-xs text-[var(--color-text-muted-val)]">
                 Currently building...
               </span>
             </div>
@@ -88,13 +87,13 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[var(--border-color)]">
+      <div className="border-t border-[var(--color-border-val)]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Copyright */}
-            <p className="text-sm text-[var(--muted-fg)] font-mono">
-              © {new Date().getFullYear()} Shubham Kushwah. Built with{" "}
-              <span className="font-mono text-[var(--accent)]">Next.js</span> &{" "}
+            <p className="text-sm text-[var(--color-text-muted-val)] font-mono">
+              © {new Date().getFullYear()} {siteConfig.name}. Built with{" "}
+              <span className="font-mono text-[var(--color-accent-val)]">Next.js</span> &{" "}
               <Heart className="w-3.5 h-3.5 inline text-red-400" />
             </p>
 
@@ -107,7 +106,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-color)] text-[var(--muted-fg)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--color-border-val)] text-[var(--color-text-muted-val)] hover:text-[var(--color-accent-val)] hover:border-[var(--color-accent-val)] transition-colors"
                 >
                   <link.icon className="w-4 h-4" />
                 </a>

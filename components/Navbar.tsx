@@ -5,14 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
-
-const NAV_ITEMS = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import { siteConfig, navItems } from "@/config/portfolio";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -31,9 +24,9 @@ export default function Navbar() {
 
   // IntersectionObserver for active section
   useEffect(() => {
-    const sections = NAV_ITEMS.map((item) =>
-      document.querySelector(item.href)
-    ).filter(Boolean) as Element[];
+    const sections = navItems
+      .map((item) => document.querySelector(item.href))
+      .filter(Boolean) as Element[];
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -59,18 +52,29 @@ export default function Navbar() {
           target.scrollIntoView({ behavior: "smooth" });
         }
       }
-      // On non-home pages the <a href="/#section"> navigates normally
       setMobileOpen(false);
     },
     [isHome]
   );
 
+  const handleAvailabilityClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isHome) {
+      e.preventDefault();
+      const contact = document.querySelector("#contact");
+      if (contact) {
+        contact.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setMobileOpen(false);
+  };
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "glass border-b border-[var(--border-color)] shadow-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "glass border-b border-[var(--color-border-val)] shadow-sm"
           : "bg-transparent"
-        }`}
+      }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
@@ -84,23 +88,43 @@ export default function Navbar() {
               }
             }}
           >
-            <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-contain" />
+            <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-contain" priority />
           </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item.href}
                 href={isHome ? item.href : `/${item.href}`}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`nav-link font-mono text-xs tracking-wide ${activeSection === item.href ? "active" : ""
-                  }`}
+                className={`nav-link font-mono text-xs tracking-wide ${
+                  activeSection === item.href ? "active" : ""
+                }`}
               >
                 {item.label}
               </a>
             ))}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {/* Availability Badge */}
+              <a
+                href={isHome ? "#contact" : "/#contact"}
+                onClick={handleAvailabilityClick}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105 ${
+                  siteConfig.isAvailable
+                    ? "bg-[var(--color-available-val)]/10 text-[var(--color-available-val)]"
+                    : "bg-[var(--color-booked-val)]/10 text-[var(--color-booked-val)]"
+                }`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full animate-pulse-dot ${
+                    siteConfig.isAvailable
+                      ? "bg-[var(--color-available-val)]"
+                      : "bg-[var(--color-booked-val)]"
+                  }`}
+                />
+                {siteConfig.isAvailable ? "Available" : "Booked"}
+              </a>
               <ThemeToggle />
               <a
                 href="/resume.pdf"
@@ -114,11 +138,31 @@ export default function Navbar() {
 
           {/* Mobile: toggle + hamburger */}
           <div className="flex md:hidden items-center gap-3">
+            {/* Mobile Availability Badge */}
+            <a
+              href={isHome ? "#contact" : "/#contact"}
+              onClick={handleAvailabilityClick}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium ${
+                siteConfig.isAvailable
+                  ? "bg-[var(--color-available-val)]/10 text-[var(--color-available-val)]"
+                  : "bg-[var(--color-booked-val)]/10 text-[var(--color-booked-val)]"
+              }`}
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full animate-pulse-dot ${
+                  siteConfig.isAvailable
+                    ? "bg-[var(--color-available-val)]"
+                    : "bg-[var(--color-booked-val)]"
+                }`}
+              />
+              {siteConfig.isAvailable ? "Available" : "Booked"}
+            </a>
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`flex flex-col gap-[6px] p-3 rounded-md hover:bg-[var(--surface-hover)] transition-colors min-w-[44px] min-h-[44px] justify-center items-center ${mobileOpen ? "hamburger-open" : ""
-                }`}
+              className={`flex flex-col gap-[6px] p-3 rounded-md hover:bg-[var(--color-surface-hover-val)] transition-colors min-w-[44px] min-h-[44px] justify-center items-center ${
+                mobileOpen ? "hamburger-open" : ""
+              }`}
               aria-label="Toggle menu"
             >
               <span className="hamburger-line" />
@@ -137,18 +181,19 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass border-b border-[var(--border-color)] overflow-hidden"
+            className="md:hidden glass border-b border-[var(--color-border-val)] overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
-              {NAV_ITEMS.map((item) => (
+              {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={isHome ? item.href : `/${item.href}`}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`block font-mono text-sm py-3 px-4 rounded-lg transition-colors ${activeSection === item.href
-                      ? "text-[var(--accent)] bg-[var(--accent-muted)]"
-                      : "text-[var(--muted-fg)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)]"
-                    }`}
+                  className={`block font-mono text-sm py-3 px-4 rounded-lg transition-colors ${
+                    activeSection === item.href
+                      ? "text-[var(--color-accent-val)] bg-[var(--accent-muted)]"
+                      : "text-[var(--color-text-muted-val)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-hover-val)]"
+                  }`}
                 >
                   {item.label}
                 </a>
